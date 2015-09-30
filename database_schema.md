@@ -4,7 +4,7 @@ OrientDB can be used to store [graph databases](http://en.wikipedia.org/wiki/Gra
 
 ![Part of a Graph](OrientGraph.JPG)
 
-Figure 4: Visual representation of a graph
+Figure 2: Visual representation of a graph
 
 Vertices and edges store information in properties. E.g. you may want to create a vertex to store a person with a Name, an E-Mail and a Telephone property.
 
@@ -16,8 +16,7 @@ OrientDB offers a third mode, the **schema-hybrid** or **schema-mixed mode**, wh
 
 In this tutorial we will use the schema-full mode to avoid errors especially when different applications access the database. This chapter has the following sections:
 1. First [create a new database using JAVA](create_new_database.md)
-2. Then [define and implement the schema for Locations.](schema_for_locations.md)
-3. Then [define and implement the schema for Objects](develop_the_schema_for_objects.md).
-4. Finally [create some unit tests for the schema.](unit_tests.md)
+2. Then [define and implement the schema for Students and Courses.](schema_for_locations.md)
+3. Finally [create some unit tests for the schema.](unit_tests.md)
 
 
