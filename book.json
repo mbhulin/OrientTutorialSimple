@@ -1,0 +1,5 @@
+{
+    "plugins": [ "quiz" ],
+    "description": "OrientDB JAVA API tutorial",
+    "gitbook": ">=2.2.0"
+}
