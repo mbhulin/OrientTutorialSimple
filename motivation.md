@@ -1,6 +1,6 @@
 # Sample Application
 ##Students of a University Attend Courses
-Regard a **university**. Of course the university stores information about **students** in a database: name, date of birth, gender, ... . The university offers **courses** of which information is also stored in the database: subject, description, credit points, learning objectives, ... .
+Regard a **university**. Of course the university stores information about **Students** in a database: name, date of birth, gender, ... . The university offers **Courses** of which information is also stored in the database: subject, description, credit points, learning objectives, ... .
 
 We consider also two relations:
 * The students **attend** courses and get grades in exams.
