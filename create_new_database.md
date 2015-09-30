@@ -4,7 +4,7 @@ OrientDB offers several possibilities to create new databases:
 * Use **Console** and the [create database command](http://orientdb.com/docs/last/Console-Command-Create-Database.html)
 * Use the **Java API** to create a database with a Java program.
 
-In this tutorial we will use the last method.
+In this tutorial we will use the Console.
 
 ## Create a Database using the Java API
 If you prefer to watch a screencast video click on the video start page.
