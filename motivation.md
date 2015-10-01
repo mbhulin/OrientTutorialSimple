@@ -6,7 +6,7 @@ We consider also two relations:
 * The students **attend** courses and get grades in exams.
 * Courses are based on other courses: To attend a course the knowledge achieved in another course may be **required**.
 
-<img src="ERDStudentsCourses.JPG"
+<img src="ERDStudentsCourses.jpg"
 alt="Entity Relationship Diagram for Students and Courses" width="660" height="200" border="10" />
 
 Figure 1: Entity Relationship Diagram for Students and Courses
