@@ -13,12 +13,15 @@ If you prefer to watch a screencast video click on the video start page.
 " target="_blank"><img src="StartScreencastVideo.jpg"
 alt="Eclipse Video" width="200" height="30" border="10" /></a>
 
-You can start the Console and then enter one console command after the other interactively. However we will use the batch mode of the Console: Create a text file *CreateDB.txt* with all your commands and then execute it with  
+You can start the OrientDB Console application and then enter one console command after the other interactively. However we will use the batch mode of Console.
 ```console.bat CreateDB.txt```
 
-* Create an empty text file CreateDB.txt and open it with your favorite editor.
+* Create an empty text file **CreateDB.txt** and open it with your favorite editor.
 * Enter your commands line by line. Close each command by a semicolon ";".
-* 
+* Save *CreateDB.txt*
+* Open a command window or shell
+* Go to the bin directory of your OrientDB installation, e.g. ```cd /orientdb/bin```
+* Start OrientDB Console with the 
 
 
 
