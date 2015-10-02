@@ -16,7 +16,7 @@ OrientDB offers a third mode, the **schema-hybrid** or **schema-mixed mode**, wh
 
 In this tutorial we will use the schema-full mode to avoid errors especially when different applications access the database.
 
-# Create a new Database
+# Create a new Database using the OrientDB Console
 OrientDB offers several possibilities to create new databases:
 * Use **Studio** to [create a new database interactively](http://orientdb.com/docs/last/Home-page.html#create-a-new-database)
 * Use **Console** and the [create database command](http://orientdb.com/docs/last/Console-Command-Create-Database.html)
@@ -24,7 +24,6 @@ OrientDB offers several possibilities to create new databases:
 
 In this tutorial we will use the Console with a script file.
 
-## Create a Database using the Console
 If you prefer to watch a screencast video click on the video start page.
 
 <a href="EclipseRobotWorldModel.mp4
@@ -51,6 +50,8 @@ First switch on Echo mode. This will show you the executed commands during the b
 
 Then create the new database:  
 ```create database plocal:/orientdb/databases/CourseParticipation;```
+
+# Create the Classes of the Database Schema
 
 You are automatically connected to the newly created database. So you can go on and create some classes in it:  
 ```sql
@@ -89,7 +90,12 @@ alter property Student.Gender regexp [male|female];
 create property Student.MatriculationNr integer;
 alter property Student.MatriculationNr mandatory true;
 alter property Student.MatriculationNr min 1000;
+create sequence matrSeq starts with 1000;
 ```
 
-The student's name is embedded and must not be empty. For gender only the values "male" and "female" are allowed. This is guaranteed by a regular expression constraint. 
+* The student's name is embedded and must not be empty.
+* For gender only the values "male" and "female" are allowed. This is guaranteed by a regular expression constraint.
+* The matriculaton number is a mandatory fileld for Student. The numbers must have at least four digits.
+* Of course matriculation numbers must be unique. This is guaranteed by a **unique index**.  Indexes also speed up search operations. Find more information about [indexes in the OrientDB documentation](orientdocu).
+* Unique matriculation numbers can easily be created using **sequences**. matrSeq.next() creates a new number. Find more information about [sequences in the OrientDB documentation](orientdoku)
 
