@@ -55,3 +55,22 @@ create property Name.LastName string;
 create property Name.Title string;
 ```
 An empty name doesn't make sense. A *mandatory* and a *not-null* constraint enforce that at least the last name is set. *MANDATORY* ensures that every record has this field and *NOTNULL* guarantees that this field has a value. Use ```ALTER PROPERTY``` to set the constraints.
+```
+alter property Name.LastName mandatory true;
+alter property Name.LastName notnull true;
+```
+
+Now you can create the properties of the Student class:
+```
+create property Student.Name embedded Name;
+alter property Student.Name mandatory true;
+alter property Student.Name notnull true;
+create property Student.DOB date;  // Date of birth
+create property Student.Gender string;
+alter property Student.Gender regexp [male|female];
+create property Student.MatriculationNr integer;
+alter property Student.MatriculationNr mandatory true;
+alter property Student.MatriculationNr min 1000;
+```
+
+The student's name is embedded and must not be empty. For gender only the values "male" and "female" are allowed. This is guaranteed by a regular expression constraint. 
