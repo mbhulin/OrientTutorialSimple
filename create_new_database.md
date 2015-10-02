@@ -53,4 +53,4 @@ create property Name.SecondName string;
 create property Name.LastName string;
 create property Name.Title string;
 ```
-An empty name doesn't make sense. A *mandatory* and a *not-null* constraint enforce that at least the last name is set.
+An empty name doesn't make sense. A *mandatory* and a *not-null* constraint enforce that at least the last name is set. *Mandatory* ensures that every record has this field and *not null* guarantees that this field has a value. Use ALTER PROPERTY to set the constraints.
