@@ -1,10 +1,10 @@
-# Create a new Database using the OrientDB Java API
+# Create a new Database
 OrientDB offers several possibilities to create new databases:
 * Use **Studio** to [create a new database interactively](http://orientdb.com/docs/last/Home-page.html#create-a-new-database)
 * Use **Console** and the [create database command](http://orientdb.com/docs/last/Console-Command-Create-Database.html)
 * Use the **Java API** to create a database with a Java program.
 
-In this tutorial we will use the Console.
+In this tutorial we will use the Console with a script file.
 
 ## Create a Database using the Console
 If you prefer to watch a screencast video click on the video start page.
