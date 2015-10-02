@@ -99,3 +99,31 @@ create sequence matrSeq starts with 1000;
 * Of course matriculation numbers must be unique. This is guaranteed by a **unique index**.  Indexes also speed up search operations. Find more information about [indexes in the OrientDB documentation](orientdocu).
 * Unique matriculation numbers can easily be created using **sequences**. matrSeq.next() creates a new number. Find more information about [sequences in the OrientDB documentation](orientdoku)
 
+In the same way create the properties for the Course class:
+```
+create property Course.Subject string;
+alter property Course.Subject mandatory true;
+alter property Course.Subject notnull true;
+create property Course.CourseNr integer;
+alter property Course.Coursenr mandatory true;
+alter property Course.Coursenr notnull true;
+alter property Course.Coursenr min 10000;
+alter property Course.Coursenr max 99999;
+create property Course.Description string;
+create property Course.LearningObjectives embeddedlist string;
+create property Course.CreditPoints short;
+alter property Course.CreditPoints min 1;
+```
+
+In contrast to relational databases OrientDB supports multivalued fields. For the learning objectives we use an embedded list of strings.
+
+Finally create properties for the edge class attends. Here the grades of students in the different courses are stored.
+```
+create property attends.Semester integer;
+create property attends.Attempt short;
+create property attends.Grade string;
+```
+
+Save your command file and execute it:  
+```console.bat <path-to-command-file>/CreateDB.txt``` on Windows or  
+```console.sh <path-to-command-file>/CreateDB.txt``` on Linux
