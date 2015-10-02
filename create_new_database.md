@@ -42,6 +42,7 @@ create class attends extends E;
 create class requires extends E;
 create class Name;
 ```
+
 CourseParticipation was created as graph database. OrientDB creates two default classes for a graph database: **V** for vertices and **E** for edges. Objects like students or courses are usually stored as vertices. Hence *Student* and *Course* are created as subclasses of *V*. Relationships are usually stored as edges. Hence the relations *attends* and *requires* are created as subclasses of *E*.
 
 Students have a name. This name is not a single value but structured. It consists of a first name, a last name, perhaps a title ect. Instead of creating separate fields for all these attributes as we would have to do in a relational table in OrientDB we can connect these fields more tightly in an extra class. Since Names are not standalone objects but belong to students the Name objects will not be stored as vertices in the graph. They will be embedded in the Student objects. Hence the Name class is created as a pure document class.
@@ -53,4 +54,4 @@ create property Name.SecondName string;
 create property Name.LastName string;
 create property Name.Title string;
 ```
-An empty name doesn't make sense. A *mandatory* and a *not-null* constraint enforce that at least the last name is set. *Mandatory* ensures that every record has this field and *not null* guarantees that this field has a value. Use ALTER PROPERTY to set the constraints.
+An empty name doesn't make sense. A *mandatory* and a *not-null* constraint enforce that at least the last name is set. *MANDATORY* ensures that every record has this field and *NOTNULL* guarantees that this field has a value. Use ```ALTER PROPERTY``` to set the constraints.
