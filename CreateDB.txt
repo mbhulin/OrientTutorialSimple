@@ -1,0 +1,41 @@
+set echo true;
+create database plocal:/orientdb/databases/CourseParticipation; // Erzeuge neue lokale Datenbank
+create class Student extends V;
+create class Name;
+create class Course extends V;
+create class attends extends E;
+create class requires extends E;
+
+create property Name.FirstName string;
+create property Name.LastName string;
+alter property Name.LastName mandatory true;
+alter property Name.LastName notnull true;
+create property Name.SecondName string;
+create property Name.Title string;
+
+create property Student.Name embedded Name;
+alter property Student.Name mandatory true;
+alter property Student.Name notnull true;
+create property Student.DOB date;  // Date of birth
+create property Student.Gender string;
+alter property Student.Gender regexp [male|female];
+create property Student.MatriculationNr integer;
+alter property Student.MatriculationNr mandatory true;
+alter property Student.MatriculationNr min 1000;
+
+create property Course.Subject string;
+alter property Course.Subject mandatory true;
+alter property Course.Subject notnull true;
+create property Course.CourseNr integer;
+alter property Course.Coursenr mandatory true;
+alter property Course.Coursenr notnull true;
+alter property Course.Coursenr min 10000;
+alter property Course.Coursenr max 99999;
+create property Course.Description string;
+create property Course.LearningObjectives embeddedlist string;
+create property Course.CreditPoints short;
+alter property Course.CreditPoints min 1;
+
+create property attends.Semester integer;
+create property attends.Attempt short;
+create property attends.Grade string;
