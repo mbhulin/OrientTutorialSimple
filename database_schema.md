@@ -16,7 +16,7 @@ OrientDB offers a third mode, the **schema-hybrid** or **schema-mixed mode**, wh
 
 In this tutorial we will use the schema-full mode to avoid errors especially when different applications access the database.
 
-# Create a new Database using the OrientDB Console
+## Create a new Database using the OrientDB Console
 OrientDB offers several possibilities to create new databases:
 * Use **Studio** to [create a new database interactively](http://orientdb.com/docs/last/Home-page.html#create-a-new-database)
 * Use **Console** and the [create database command](http://orientdb.com/docs/last/Console-Command-Create-Database.html)
@@ -51,7 +51,7 @@ First switch on Echo mode. This will show you the executed commands during the b
 Then create the new database:  
 ```create database plocal:/orientdb/databases/CourseParticipation;```
 
-# Create the Classes of the Database Schema
+## Create the Classes of the Database Schema
 
 You are automatically connected to the newly created database. So you can go on and create some classes in it:  
 ```sql
@@ -127,3 +127,23 @@ create property attends.Grade string;
 Save your command file and execute it:  
 ```console.bat <path-to-command-file>/CreateDB.txt``` on Windows or  
 ```console.sh <path-to-command-file>/CreateDB.txt``` on Linux
+
+## Insert some Sample Data into the Database
+To insert data into the database there are again three possibilities:
+* Use **Studio** to create a new vertex interactively or with SQL
+* Use **Console** and SQL: [create vertex](http://orientdb.com/docs/last/SQL-Create-Vertex.html) and [create edge](http://orientdb.com/docs/last/SQL-Create-Edge.html)
+* Use the **Java API** to create a vertex using the Java API.
+
+### Create Vertices and Edges with Studio
+Open a command promt  (command shell) window on the computer where you want to start the OrientDB server.
+
+Change to the bin directory of your OrientDB installation, e.g. ```cd /orientdb/bin```
+
+Call ```server.bat``` on MS-Windows or ```server.sh``` on Unix to start the OrientDB server.
+
+Start an internet browser like Firefox on your client computer (may be the same computer).
+
+Open the URL ```http://localhost:2480/studio/index.html#/```. Replace "localhost" by the link to your server if you run client and server on different computers.
+
+Select "
+
