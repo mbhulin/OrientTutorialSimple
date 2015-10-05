@@ -138,12 +138,21 @@ To insert data into the database there are again three possibilities:
 Open a command promt  (command shell) window on the computer where you want to start the OrientDB server.
 
 Change to the bin directory of your OrientDB installation, e.g. ```cd /orientdb/bin```
+![command prompt](cmdPromt.JPG)
 
 Call ```server.bat``` on MS-Windows or ```server.sh``` on Unix to start the OrientDB server.
+![server.bat](server.bat.jpg)
 
 Start an internet browser like Firefox on your client computer (may be the same computer).
 
 Open the URL ```http://localhost:2480/studio/index.html#/```. Replace "localhost" by the link to your server if you run client and server on different computers.
 
-Select "
+Select the Database "CourseParticipation" you have created before and type "admin" as User and Passwort. Click on "Connect".
+![Studio Connect to Database](StudioLogin.JPG)
 
+Click on "Schema" in the menu bar.
+
+Look for the class "Student" in the list of classes. Click on "Add record" at the end of this row.
+
+Type the data of a new Student. The Name being an embedded document must be entered in JSON format: ```{'@type':'d', '@class':'Name', 'FirstName':'John', 'LastName':'Baker'}```. Finally click on "Save".
+![New Student Record in Studio](StudentRecord.JPG)
