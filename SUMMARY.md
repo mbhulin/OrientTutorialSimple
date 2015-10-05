@@ -4,7 +4,6 @@
 * [Motivation](motivation.md)
 * [Preparation](preparation.md)
 * [Database Schema](database_schema.md)
-   * [Develop the Schema for Locations](schema_for_locations.md)
    * [Develop the Schema for Objects](develop_the_schema_for_objects.md)
    * [Unit Tests](unit_tests.md)
    * [Additional Tasks and Quiz](additional_tasks.md)
