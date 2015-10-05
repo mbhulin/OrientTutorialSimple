@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [Motivation](motivation.md)
 * [Preparation](preparation.md)
+* [Unit Tests](unit_tests.md)
 * [Database Schema](database_schema.md)
    * [Unit Tests](unit_tests.md)
    * [Additional Tasks and Quiz](additional_tasks.md)
