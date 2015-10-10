@@ -95,28 +95,35 @@ Add a test where you try to store a *Course* with zero *CreditPoints*. In this t
 Add a test where you try to store a correctly constructed *Course*. This course should be stored in the database.
 
 ```java
-	@Test
-	public void testCourseOK () {
-	
-		String errorMessage = "No exception";
-		Vertex c = db.addVertex("class:Course", "Subject", "TestCourseOk", "CourseNr", 30567, "CreditPoints", 5);
+  @Test
+  public void testCourseOk () {
+    String errorMessage = "No exception";
+    int hits = -1;
 
-		try {
-			db.commit();
-		} catch (Exception e) {
-			db.rollback();
-			errorMessage = e.getMessage();
-		}
-		long nrLocationsAfter = db.countVertices("Location");
-		Assert.assertEquals("No exception", errorMessage);
-		Assert.assertEquals(nrLocationsBefore + 1, nrLocationsAfter);
-		db.removeVertex(pos1);
-		db.removeVertex(pos2);
-		db.removeVertex(pos3);
-		db.removeVertex(pos4);
-		db.removeVertex(newLocation);
-		db.commit();
-	}
+    Iterable <Vertex> i = db.command(new OSQLSynchQuery <Vertex> ("select count(*) as hits from Course where Subject = 'TestCourseOk'")).execute();
+    for (Vertex count: i) {
+      hits = ((Long) count.getProperty("hits")).intValue();
+    }
+    Assert.assertEquals("Course not in db before",0, hits); // Assert that new course is not yet stored in database
+    Vertex c = db.addVertex("class:Course", "Subject", "TestCourseOk", "CourseNr", 30567, "CreditPoints", 5);
+
+    try {
+      db.commit();
+    } catch (Exception e) {
+      db.rollback();
+      errorMessage = e.getMessage();
+    }
+    i = db.command(new OSQLSynchQuery <Vertex> ("select count(*) as hits from Course where Subject = 'TestCourseOk'")).execute();
+    for (Vertex count: i) {
+      hits = ((Long) count.getProperty("hits")).intValue();
+    }
+    Assert.assertEquals("No exception", errorMessage);
+    Assert.assertEquals("Course in db after insertion", 1, hits);
+    
+    db.removeVertex(c);
+    db.commit(); 
+  }
+
 ```
 
 First make sure that the new course is not yet in the database. To do that query the database for the number of records with Subject equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ```command ()``` method of the database connection.
