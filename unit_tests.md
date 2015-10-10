@@ -1,11 +1,11 @@
 # Unit Tests
-After establishing the schema you can try to store some data in your database. The schema helps to avoid storing wrong or inconsistent data. You can test this behaviour with *unit tests*. In this chapter you will also learn to access the database by a Java program.
+After establishing the schema you can try to store some data in your database. The schema helps to avoid storing wrong or inconsistent data. You can test this behavior with *unit tests*. In this chapter you will also learn to access the database by a Java program.
 
 ### Create a new Java Project
 
 Start Eclipse on your computer. In the main menu of eclipse click on *File* > *New* > *Java Project*
 
-A "New Java Project"-dialog opens. Type in a name for the project e.g. *CourseParticipation* and choose the default JRE (Java Runtime Environment). Click *Next* to continue.
+A "New Java Project"-dialog opens. Type a name for the project, e.g. *CourseParticipation*, and choose the default JRE (Java Runtime Environment). Click *Next* to continue.
 
 In the following "Java Settings"-dialog click on the *Libraries* tab and then on *Add External JARs...*
 
@@ -53,8 +53,9 @@ Add a static method ``teardownAfterClass()``. This method is executed after all 
 		db.shutdown();
 		factory.close();
 	}
-
 ```
+
+### Add Test Cases
 
 Add a test where you try to store a *Course* without a course number. This should fail because *CourseNr* is mandatory. We use the Blueprints Tinkerpop API to create a new vertex.
 
@@ -72,7 +73,6 @@ Add a test where you try to store a *Course* without a course number. This shoul
 		}
 		Assert.assertTrue(errorMessage.contains("CourseNr' is mandatory"));
 	}
-
 ```
 
 Add a test where you try to store a *Course* with zero *CreditPoints*. In this test method SQL is used. Again OrientDB should not store this course.
@@ -126,8 +126,14 @@ Add a test where you try to store a correctly constructed *Course*. This course 
 
 ```
 
-First make sure that the new course is not yet in the database. To do that query the database for the number of records with Subject equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ```command ()``` method of the database connection.
+First make sure that the new course is not yet in the database. To do that query the database for the number of records with Subject equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ``command ()`` method of the database connection. Provide the SQL-string as OSQLSynchQuery object. Since the result is always an Iterable of vertices or edges, even if you expect a number as you would do in this case, you have to iterate the result and retrieve the number with ``getProperty ("hits")``.
 
-* Start the [OrientDB server](http://orientdb.com/docs/last/Tutorial-Run-the-server.html). Then run your test class. To do this right click on *LocationTests.java* in the Eclipse package explorer. In the pop up menu choose *Run As* > *JUnit Test*. All tests should succeed.
+Then insert the new course with valid data. You can set all the data inside the ```addVertex()``` method.
 
-You can download both Java files, *CreateDBSchema.java* and *LocationTests.java*, as [ZIP-Archive here](RobotWorldModel_V1.zip).
+Try to retrieve the newly created course and assert that the query returns 1 as the number of hits this time.
+
+Finally delete the test course. This gives you the possibility to run the test again and again.
+
+### Run the Test
+Start the [OrientDB server](http://orientdb.com/docs/last/Tutorial-Run-the-server.html). Then run your test class. To do so right click on *CourseTests.java* in the Eclipse package explorer. In the pop up menu choose *Run As* > *JUnit Test*. All tests should succeed.
+
