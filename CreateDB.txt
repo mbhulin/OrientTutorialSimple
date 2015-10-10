@@ -1,5 +1,5 @@
 set echo true;
-create database plocal:/orientdb/databases/CourseParticipation; // Erzeuge neue lokale Datenbank
+create database plocal:../databases/CourseParticipation; // Create new local database
 create class Student extends V;
 create class Name;
 create class Course extends V;
@@ -18,10 +18,10 @@ alter property Student.Name mandatory true;
 alter property Student.Name notnull true;
 create property Student.DOB date;  // Date of birth
 create property Student.Gender string;
-alter property Student.Gender regexp [male|female];
-create property Student.MatriculationNr integer;
-alter property Student.MatriculationNr mandatory true;
-alter property Student.MatriculationNr min 1000;
+alter property Student.Gender regexp male|female;
+create property Student.StudentNr integer;
+alter property Student.StudentNr mandatory true;
+alter property Student.StudentNr min 1000;
 
 create property Course.Subject string;
 alter property Course.Subject mandatory true;
