@@ -1,10 +1,10 @@
 # Additional Tasks and Quiz
-In this chapter you have learned how to create an OrientDB graph database using the Java API of OrientDB which is based on Tinkerpop Blueprints, a general API for graph databases. Now you should do some programming tasks yourself.
+In this chapter you have learned how to create an OrientDB graph database using OrientDB Console. Now you should do some programming tasks yourself.
 
-* Add some more unit tests to ``LocationTests.java``
+* Add some more unit tests to ``CourseTests.java``
 .
-* Create a Java class ``ObjectTests.java`` with unit tests for the OrientDB classes *MobileObject*, *ObjectConcept*, *IS_A*, *IS_PART_OF* and *PROB_IS_AT*.
-* Develop the Schema for *Property*, *PropertyConcept* and *HAS_PROPERTY* as described in [Motivation](motivation.md). Then add intructions to ``CreateDBSchema.java`` which create these OrientDB classes.
+* Create a Java class ``StudentTests.java`` with unit tests for the OrientDB classes *Student* and *attends*.
+* Add some *students* and *courses* to your database with OrientDB Studio.
 
 <quiz name="Quiz: Database Schema for 'Robot World Model'">
     <question multiple>
