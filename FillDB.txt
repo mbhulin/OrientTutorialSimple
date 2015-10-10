@@ -1,0 +1,5 @@
+set echo on;
+create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Max', 'LastName':'Maker'},  StudentNr = 5000, Gender = 'male';
+create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Susan', 'LastName':'Gartner'},  StudentNr = 5001, Gender = 'female';
+
+create vertex Course set Subject = 'Mathematics,  CourseNr = 50000, CreditPoints = 5, LearningObjectives = ['can multiply matrices', 'can integrate trigonometric functions', 'knows the definition of vector space'];
