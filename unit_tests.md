@@ -1,13 +1,37 @@
 # Unit Tests
-After establishing the schema you can try to store some data in your database. The schema helps to avoid storing wrong or inconsistent data. You can test this behaviour with *unit tests*.
+After establishing the schema you can try to store some data in your database. The schema helps to avoid storing wrong or inconsistent data. You can test this behaviour with *unit tests*. In this chapter you will also learn to access the database by a Java program.
 
-In your Eclipse project *RobotWorldModel* execute the following steps:
-* Add a new package with name *tests*.
-* Add the library *JUnit4* to your project. To do this go to  
-*Project > Properties > Java Build Path*  
-and there to the *Libraries* tab. Click on *Add Library*, choose *JUnit* and then *JUnit4*.
-* In the tests package add a new Java class with name *LocationTests*.
-* Add a static method ``setupBeforeClass()``. This method is executed before all tests and hence is used to prepare a proper environment for the tests. The connection to the database is established and all data in the class *Location* are deleted. Notice: This time a *remote connection* to the database is used. Hence the server must be running when you execute the tests.
+### Create a new Java Project
+
+Start Eclipse on your computer. In the main menu of eclipse click on *File* > *New* > *Java Project*
+
+A "New Java Project"-dialog opens. Type in a name for the project e.g. *CourseParticipation* and choose the default JRE (Java Runtime Environment). Click *Next* to continue.
+
+In the following "Java Settings"-dialog click on the *Libraries* tab and then on *Add External JARs...*
+
+A file dialog opens. Navigate to your orient root directory and then to the jar-directory. Choose the following JAR-files where * is the version number installed on your computer ([compare documentation](http://orientdb.com/docs/last/Graph-Database-Tinkerpop.html)):
+```
+blueprints-core-*.jar
+concurrentlinkedhashmap-lru-*.jar
+jna-*.jar
+jna-platform-*.jar
+orientdb-client-*.jar
+orientdb-core-*.jar
+orientdb-enterprise-*.jar
+orientdb-graphdb-*.jar
+```
+Add the library *JUnit4* to your project. To do this click on *Add Library*, choose *JUnit* and then *JUnit4*.
+
+Click *Finish* - a new empty Java project is created and is added to the list of your Java projects in your workspace. You can see it in the Package Explorer. If it is not visible open it with
+*Window* > *Show View* > *Package Explorer*
+
+### Create a new Package
+In the package explorer choose your new project *CourseParticipation*. Click on the "New Package"-icon or click on *File* > *New* > *Package* in the main menu. In the "New Package"-dialog type the package name *tests*.
+
+### Create a new Java Class for the Unit Tests
+In the package explorer choose the newly created package *tests*. In the main menu click on *File* > *New* > *Class* or click on the "New Java Class"-icon. In the "New Class"-dialog type in the class name e.g. *CourseTests*.
+
+Add a static method ``setupBeforeClass()``. This method is executed before all tests and hence is used to prepare a proper environment for the tests. The connection to the database is established. Notice: This time a *remote connection* to the database is used. Hence the server must be running when you execute the tests.
 
 ```java
 public class LocationTests {
@@ -23,7 +47,7 @@ public class LocationTests {
 	}
 ```
 
-* Add a static method ``teardownAfterClass()``. This method is executed after all tests and is used to cleanup the environment. The database connection is shut down and the factory is closed.
+Add a static method ``teardownAfterClass()``. This method is executed after all tests and is used to cleanup the environment. The database connection is shut down and the factory is closed.
 
 ```java
 	@AfterClass
