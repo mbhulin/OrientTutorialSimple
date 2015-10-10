@@ -97,12 +97,10 @@ Add a test where you try to store a correctly constructed *Course*. This course 
 ```java
 	@Test
 	public void testCourseOK () {
+	
 		String errorMessage = "No exception";
-		Vertex c = db.addVertex("class:Course", "Subject", "Mathematics", "CourseNr", 100001, "z", 0);
-		Vertex pos2 = db.addVertex("class:Position", "x", 1000, "y", 0, "z", 0);
-		Vertex pos3 = db.addVertex("class:Position", "x", 1000, "y", 500, "z", 0);
-		Vertex pos4 = db.addVertex("class:Position", "x", 0, "y", 500, "z", 0);
-		
+		Vertex c = db.addVertex("class:Course", "Subject", "TestCourseOk", "CourseNr", 30567, "CreditPoints", 5);
+
 		try {
 			db.commit();
 		} catch (Exception e) {
@@ -120,6 +118,8 @@ Add a test where you try to store a correctly constructed *Course*. This course 
 		db.commit();
 	}
 ```
+
+First make sure that the new course is not yet in the database. To do that query the database for the number of records with Subject equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ```command ()``` method of the database connection.
 
 * Start the [OrientDB server](http://orientdb.com/docs/last/Tutorial-Run-the-server.html). Then run your test class. To do this right click on *LocationTests.java* in the Eclipse package explorer. In the pop up menu choose *Run As* > *JUnit Test*. All tests should succeed.
 
