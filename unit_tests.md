@@ -97,24 +97,12 @@ Add a test where you try to store a correctly constructed *Course*. This course 
 ```java
 	@Test
 	public void testCourseOK () {
-		long nrCoursesBefore = db.countVertices("Course");
 		String errorMessage = "No exception";
-		Vertex pos1 = db.addVertex("class:Position", "x", 0, "y", 0, "z", 0);
+		Vertex c = db.addVertex("class:Course", "Subject", "Mathematics", "CourseNr", 100001, "z", 0);
 		Vertex pos2 = db.addVertex("class:Position", "x", 1000, "y", 0, "z", 0);
 		Vertex pos3 = db.addVertex("class:Position", "x", 1000, "y", 500, "z", 0);
 		Vertex pos4 = db.addVertex("class:Position", "x", 0, "y", 500, "z", 0);
 		
-		ArrayList <Vertex> shape = new ArrayList <Vertex> ();
-		shape.add(pos1);
-		shape.add(pos2);
-		shape.add(pos3);
-		shape.add(pos4);
-		
-		Vertex newLocation = db.addVertex("class:Location");
-		newLocation.setProperty("Name", "Extra Room");
-		newLocation.setProperty("Description", "This room is not needed. It is an extra room.");
-		newLocation.setProperty("shape", shape);
-
 		try {
 			db.commit();
 		} catch (Exception e) {
