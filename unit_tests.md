@@ -34,16 +34,14 @@ In the package explorer choose the newly created package *tests*. In the main me
 Add a static method ``setupBeforeClass()``. This method is executed before all tests and hence is used to prepare a proper environment for the tests. The connection to the database is established. Notice: This time a *remote connection* to the database is used. Hence the server must be running when you execute the tests.
 
 ```java
-public class LocationTests {
+public class CourseTests {
 	private static OrientGraph db;
 	private static OrientGraphFactory factory;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		factory = new OrientGraphFactory("remote:localhost/RobotWorld1", "admin", "admin"); // The OrientDB server must be running
+		factory = new OrientGraphFactory("remote:localhost/CourseParticipation", "admin", "admin"); // The OrientDB server must be running
 		db = factory.getTx(); // Connect to the database
-		
-		db.command(new OCommandSQL ("delete vertex Location")).execute(); // Delete all Location vertices in the database
 	}
 ```
 
@@ -58,34 +56,33 @@ Add a static method ``teardownAfterClass()``. This method is executed after all 
 
 ```
 
-* Add a test where you try to store a *Position2D* without the x-coordinate. This should fail because x is mandatory.
+Add a test where you try to store a *Course* without a course number. This should fail because *CourseNr* is mandatory. We use the Blueprints Tinkerpop API to create a new vertex.
 
 ```java
 	@Test
-	public void testPositionWithoutX() {
+	public void testCourseWithoutCourseNr() {
 		String errorMessage = "";
-		Vertex pos = db.addVertex("class:Position");
-		pos.setProperty("y", 100);
-		pos.setProperty("z", 0);
+		Vertex c = db.addVertex("class:Course");
+		pos.setProperty("Subject", "Mathematics");
 		try {
 			db.commit();
 		} catch (Exception e) {
 			db.rollback();
 			errorMessage = e.getMessage();
 		}
-		Assert.assertTrue(errorMessage.contains("x' is mandatory"));
+		Assert.assertTrue(errorMessage.contains("CourseNr' is mandatory"));
 	}
 
 ```
 
-* Add a test where you try to store a *Location* with *Name* set to NULL. In this test method SQL is used. Again OrientDB should not store this location.
+Add a test where you try to store a *Course* with zero *CreditPoints*. In this test method SQL is used. Again OrientDB should not store this course.
 
 ```java
 	@Test
-	public void testLocationWithoutName () {
+	public void testCourseZeroCreditPoints () {
 		String errorMessage = "";
 		try {
-			db.command(new OCommandSQL ("insert into Location (Name, Description) values (NULL, 'A location without name')")).execute();
+			db.command(new OCommandSQL ("insert into Course (Subject, CourseNr, CreditPoints) values ('Mathematics', 10001, 0)")).execute();
 			db.commit();
 		} catch (Exception e) {
 			db.rollback();
@@ -95,12 +92,12 @@ Add a static method ``teardownAfterClass()``. This method is executed after all 
 	}
 ```
 
-* Add a test where you try to store a correctly constructed *Location* together with its shape. This Location should be stored in the database.
+Add a test where you try to store a correctly constructed *Course*. This course should be stored in the database.
 
 ```java
 	@Test
-	public void testLocationOK () {
-		long nrLocationsBefore = db.countVertices("Location");
+	public void testCourseOK () {
+		long nrCoursesBefore = db.countVertices("Course");
 		String errorMessage = "No exception";
 		Vertex pos1 = db.addVertex("class:Position", "x", 0, "y", 0, "z", 0);
 		Vertex pos2 = db.addVertex("class:Position", "x", 1000, "y", 0, "z", 0);
