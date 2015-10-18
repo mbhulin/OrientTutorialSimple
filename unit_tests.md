@@ -126,7 +126,7 @@ Add a test where you try to store a correctly constructed *Course*. This course 
 
 ```
 
-First make sure that the new course is not yet in the database. To do that query the database for the number of records with Subject equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ``command ()`` method of the database connection. Provide the SQL-string as OSQLSynchQuery object. Since the result is always an Iterable of vertices or edges, even if you expect a number as you would do in this case, you have to iterate the result and retrieve the number with ``getProperty ("hits")``.
+First make sure that the new course is not yet in the database. To do that query the database for the number of records with *Subject* equals "TestCourseOk". SQL is used for this query. You can execute SQL queries using the ``command ()`` method of the database connection. Provide the SQL-string as OSQLSynchQuery object. Since the result is always an Iterable of vertices or edges, even if you expect a number as you would do in this case, you have to iterate the result and retrieve the number with ``getProperty ("hits")``.
 
 Then insert the new course with valid data. You can set all the data inside the ```addVertex()``` method.
 
