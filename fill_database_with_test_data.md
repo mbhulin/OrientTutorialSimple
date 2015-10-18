@@ -11,7 +11,7 @@ create vertex Course set Subject = 'Mathematics',  CourseNr = 50000, CreditPoint
 
 
 
-Edit FillDB.txt and add some additional *Student* and *Course* vertices and some *attend* edges.
+Edit FillDB.txt and add some additional *Student* and *Course* vertices and some *attend* and *requires* edges.
 
 Finally run FillDB.
 
