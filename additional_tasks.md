@@ -50,5 +50,13 @@ In this chapter you have learned how to create an OrientDB graph database using 
     <answer correct>both constraints: mandatory and not null</answer>
     <explanation>The mandatory constraint ensures that every record has a field accountNr but this field need not have a value. Not null means that if a field accountNr is present it must have a value other than NULL but there may be records without this field. Only both constraints together guarantee that each record has an accountNr with a value. There is no constraint "obligate".</explanation>
     </question>
+    <question>
+    <p>You have created the class "Measure" with the properties "Length", "Width" and "Height". You want to use this class for a property "Size" in a class "Furniture". How should you create this property?</p>
+    <answer correct>create property Furniture.Size EMBEDDED Measure;</answer>
+    <answer>create property Furniture.Size LINK Measure;</answer>
+    <answer>create property Furniture.Size DEPENDS ON Measure;</answer>
+    <answer>create property Size in Furniture of Measure;</answer>
+    <explanation>Syntactically correct are "EMBEDDED" and "LINK". Here we use EMBEDDED because a measure is tightly connected to its furniture object and cannot be reused for another furniture object.</explanation>
+    </question>
 </quiz>
 
