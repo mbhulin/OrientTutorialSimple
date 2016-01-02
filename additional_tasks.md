@@ -27,24 +27,20 @@ In this chapter you have learned how to create an OrientDB graph database using 
         <explanation>To define a schema for OrientDB you can use <a href="http://orientdb.com/docs/last/Studio-Schema.html"> Studio with the Schema Manager</a> or Studio with SQL <a href="http://orientdb.com/docs/last/SQL-Create-Class.html"> 'Create Class'</a> and <a href="http://orientdb.com/docs/last/SQL-Create-Property.html"> 'Create Property'</a> commands, OrientDB Console or in Java the <a href="http://orientdb.com/docs/last/Graph-Schema.html#working-with-custom-vertex-and-edge-types"> createVertexType() and createEdgeType() methods.</a></explanation>
     </question>
     <question>
-    <p>If you want to create a database and define a database schema, should you open the database in</p>
-    <answer>transactional mode: OrientGraph db = factory.getTx();</answer>
-    <answer correct>non transactional mode: OrientGraphNoTx db = factory.getNoTx();</answer>
-    <explanation>Transactions with the possibility to rollback a transaction are useful if you insert, update, or delete data. A schema is usually defined before the application is used. Transaction are not necessary in this case. If the schema is not correct you can delete it correct the errors in your script and rebuild the schema.</explanation>
+    <p>Which is the correct syntax if you want to create a new vertex class "Account" using the Console with SQL?</p>
+    <answer>create vertex class Account;</answer>
+    <answer correct>create class Account extends V;</answer>
+    <answer>create class Account under V;</answer>
+    <answer>create new vertex Account;</answer>
+    <explanation><a href="http://orientdb.com/docs/last/SQL-Create-Class.html"> See documentation for CREATE CLASS</a></explanation>
     </question>
     <question>
-    <p>You want to create a database schema using db.createVertexType() and db.createEdgeType(). In which mode do you connect to the database?</p>
-    <answer>remote connection to an OrientDB server</answer>
-    <answer correct>plocal mode</answer>
-    <explanation>If you want to use Tinkerpop Blueprints API you have to open the database locally on the database server in plocal mode. If you want to use a remote connection you have to use the underlying document database. </explanation>
-    </question>
-    <question>
-    <p>Which is the correct syntax if you want to create a new class "Account" using the Java API with SQL?</p>
-    <answer>db.executeSQL(new OCommandSQL ("create class Account extends V"));</answer>
-    <answer correct>db.command(new OCommandSQL ("create class Account extends V")).execute();</answer>
-    <answer>db.command(new OSQLSynchQuery ("create class Account extends V")).execute();</answer>
-    <answer>db.command("create class Account extends V").execute();</answer>
-    <explanation><a href="http://orientdb.com/docs/last/Graph-Database-Tinkerpop.html#sql-commands"> See documentation for db.command()</a></explanation>
+    <p>Which is the correct syntax if you want to create a new property "accountNr" of the OrientDB class "Account" using the Console with SQL?</p>
+    <answer>alter class Account add (accountNr integer);</answer>
+    <answer correct>create property Account.accountNr integer;</answer>
+    <answer>create property accountNr integer;</answer>
+    <answer>create property accountNr in Account as integer;</answer>
+    <explanation><a href="http://orientdb.com/docs/last/SQL-Create-Class.html"> See documentation for CREATE CLASS</a></explanation>
     </question>
     <question>
     <p>You want to create the property "accountNr" of the OrientDB class "Account" which should exist for every record of the class and must not be empty (null). Which constraint(s) is/are necessary?</p>
