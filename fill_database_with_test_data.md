@@ -15,11 +15,15 @@ Edit FillDB.txt and add some additional *Student* and *Course* vertices and some
 
 Finally run FillDB.
 
-### Create Vertex using SQL
+### Create Vertices and Edges Using a Java Program
 
-Instead of Blueprint's addVertex method you could use SQL to create a new vertex:
+You can use SQL to create a new vertex in a Java program where db represents an open database connection:
 
 ```java
-db.command(new OCommandSQL ("INSERT INTO Location (Name, Description) VALUES ('Sophia's room','Bedroom of Sophia')")).execute();
+db.command(new OCommandSQL ("INSERT INTO Course (Subject, CourseNr, CreditPoints) VALUES ('Mathematics', 50000, 5)")).execute();
 ```
+
+As an alternative you can use Blueprint's addVertex method.
+
+
 
