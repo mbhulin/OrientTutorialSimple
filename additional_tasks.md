@@ -6,7 +6,7 @@ In this chapter you have learned how to create an OrientDB graph database using 
 * Create a Java class ``StudentTests.java`` with unit tests for the OrientDB classes *Student* and *attends*.
 * Add some *students* and *courses* to your database with OrientDB Studio.
 
-<quiz name="Quiz: Database Schema for 'Robot World Model'">
+<quiz name="Quiz: Database Schema for 'Course Participation'">
     <question multiple>
         <p>Which alternatives does OrientDB offer regarding a database schema?</p>
         <answer correct>Schema-less mode: Each vertex or edge may have different properties</answer>
