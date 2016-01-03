@@ -5,11 +5,7 @@ If you prefer you can watch a screencast video:
 " target="_blank"><img src="StartScreencastVideo.jpg"
 alt="Eclipse Video" width="200" height="30" border="10" /></a>
 
-The special task of a service robot we will simulate in this tutorial is to search for a mobile object. Imagine that a person instructs the robot to bring a glass of apple juice. The robot has to understand the spoken instruction, parse it into simple actions, plan the actions and finally perform the task. In this example the robot has to search for a juice glass then to search for apple juice, bring the juice to the glass, fill the glass with the juice and finally bring the glass to the person.
-
-In this tutorial we will consider one frequent task: **search for an object**
-
-This search algorithm consists of the following parts:
+As a simple programming task we first will develop a Java program which prints a grade report for a selectet student. The program consists of the following parts:
 
 1. [Get the the parameters for the search using a simple GUI](download_a_simple_gui.md):
     * the search Object
