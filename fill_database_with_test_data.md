@@ -10,6 +10,8 @@ begin;
 let s1 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Max', 'LastName':'Maker'},  StudentNr = 5000, Gender = 'male', DOB = '1993-05-15';
 let c1 = create vertex Course set Subject = 'Mathematics',  CourseNr = 50000, CreditPoints = 5, LearningObjectives = ['can multiply matrices', 'can integrate trigonometric functions', 'knows the definition of vector space'];
 let c7 = create vertex Course set Subject = 'Artificial Intelligence',  CourseNr = 50006, CreditPoints = 5, LearningObjectives = ['Data Mining', 'Expert Systems'];
+commit;
+begin;
 let a1 = create edge attends from $s1 to $c1 set Semester = 20130, Attempt = 1, Grade = 'B';
 let r4 = create edge requires from $c7 to $c1;
 commit;
