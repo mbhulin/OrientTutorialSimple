@@ -2,7 +2,13 @@
 
 Again we use OrientDB Console in batch mode to create some sample data in the database. Download the file with the Console commands: [FillDB.txt](FillDB.txt).
 
-Open the file with a text editor. It consists of ```CREATE VERTEX``` and ```CREATE EDGE``` commands. Here are five examples:
+Open the file with a text editor. First old test data are deleted if you had run FillDB.txt before:
+```
+delete edge E;
+delete vertex V;
+```
+
+Then data are created with ```CREATE VERTEX``` and ```CREATE EDGE``` commands. Here are five examples:
 
 ```sql
 script sql;
