@@ -13,13 +13,9 @@ As a simple programming task we first will develop a Java program which prints a
 1. Retrieve all *attends* edges of the selected student and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
 
-To implement the grade report create a new package in Eclipse: **applications**
+In [Unit Tests](unit_tests.md) you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
 
-Then create a new JAVA class **GradeReport** in this package.
-
-### Retrieve Positions of Search Object
-
-Inside of the class Operations write a new method ``createPosList()``. As the name says the result should be a list of positions and positions are vertices. To determine possible positions of the search Object the method needs the search object as a parameter which is also a vertex. So we get:
+Since this is a very short program a main method with a linear structure is sufficient. First we establish the connection to the database.
 
 ```java
 public List<Vertex> createPosList(Vertex obj) {
