@@ -1,4 +1,4 @@
-# Create the Search Method
+# Create a Java Program to Print a Grade Report
 
 If you prefer you can watch a screencast video:
 <a href="RWM-Search-2.mp4
@@ -7,16 +7,11 @@ alt="Eclipse Video" width="200" height="30" border="10" /></a>
 
 As a simple programming task we first will develop a Java program which prints a grade report for a selectet student. The program consists of the following parts:
 
-1. [Get the the parameters for the search using a simple GUI](download_a_simple_gui.md):
-    * the search Object
-    * and for the simulation the current position of the robot
-    * and the current position of the search object
-1. [Retrieve all positions from the database where the search object could be](#retrieve-positions-of-search-object) together with the probability (score) that the object is really there.
-1. [Calculate the path to each possible position](#calculate-the-paths-to-all-positions-in-the-position-list)
-1. Decide to which position the robot should go first
-1. [Go to this position and look for the search object there](#repeat-the-search-until-the-object-is-found-or-all-possible-positions-are-visited)
-1. If the object is really there or if this is the last possible search position show the robot's search path
-else continue the search with the remaining positions at **step 3**.
+1. User input: name of a student
+1. Retrieve all students with this name from the database and print their data
+1. User input: student number of the student
+1. Retrieve all *attends* edges of the selected student and the connected course vertices
+2. Print the grades of each attends edge together with the subject of the corresponding course
 
 To implement the search algorithm create a new package in Eclipse: **operations**
 
