@@ -33,7 +33,14 @@ Vertex c1 = db.command(new OCommandSQL ("INSERT INTO Course (Subject, CourseNr, 
 Vertex s1 = db.command(new OCommandSQL ("create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Max', 'LastName':'Maker'},  StudentNr = 5000, Gender = 'male', DOB = '1993-05-15'")).execute();
 ```
 
-As an alternative you can use Blueprint's addVertex method.
+As an alternative you can use Blueprint's addVertex method. Here is an example:
+```java
+ODocument n1 = new ODocument ("Name");
+n1.field("FirstName", "Max");
+n1.field("LastName", "Maker");
+Vertex S1 = db.addVertex("class:Student", "Name", n1, "StudentNr", 5000, "Gender", "male", "DOB", "1993-05-15");
+```
+
 
 
 
