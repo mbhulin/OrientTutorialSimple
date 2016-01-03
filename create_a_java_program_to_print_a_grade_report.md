@@ -5,7 +5,7 @@ If you prefer you can watch a screencast video:
 " target="_blank"><img src="StartScreencastVideo.jpg"
 alt="Eclipse Video" width="200" height="30" border="10" /></a>
 
-As a simple programming task we first will develop a Java program which prints a grade report for a selectet student. The program consists of the following parts:
+As a simple programming task we first will develop a Java program which prints a grade report for a selected student. The program consists of the following parts:
 
 1. User input: name of a student
 1. Retrieve all students with this name from the database and print their data
@@ -13,9 +13,9 @@ As a simple programming task we first will develop a Java program which prints a
 1. Retrieve all *attends* edges of the selected student and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
 
-To implement the search algorithm create a new package in Eclipse: **operations**
+To implement the grade report create a new package in Eclipse: **applications**
 
-Then create a new JAVA class **Operations** in this package.
+Then create a new JAVA class **GradeReport** in this package.
 
 ### Retrieve Positions of Search Object
 
