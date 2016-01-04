@@ -1,7 +1,7 @@
 # Create a Java Program to Assign a Student to a Course
 
 ## Learning objectives
-In this chapter of the tutorial you will learn to use the SQL extension **traverse** to traverse a graph recursively
+In this chapter of the tutorial you will learn to use the SQL extension **traverse** to traverse a graph recursively and to navigate from one vertex to a connected vertex.
 
 
 If you prefer you can watch a screencast video:
@@ -18,7 +18,7 @@ This application assigns a student to a course. It checks whether the student ha
 2. Retrieve and print all courses
 2. User input: course number
 3. Select desired course and retrieve all courses which are required for this course following the *required* edges
-1. Retrieve all *attends* edges of the selected student and the connected course vertices
+1. Retrieve all *attends* edges of the required courses and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
 
 In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
