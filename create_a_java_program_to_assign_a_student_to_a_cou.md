@@ -18,24 +18,21 @@ This application assigns a student to a course. It checks whether the student ha
 2. Retrieve and print all courses
 2. User input: course number
 3. Select desired course and retrieve all courses which are required for this course following the *required* edges
-1. Retrieve all *attends* edges of the required courses and the connected course vertices
-2. Print the grades of each attends edge together with the subject of the corresponding course
+1. For each of the required courses retrieve all *attends* edges and check whether one of them is connected to the selected student and the grade is better than F
+2. If the check succeeds create a new attends edge from the selected student to the selected course
 
-In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
 
 ## Develop the Program
-Since this is a very short program a main method with a linear structure is sufficient. First we establish the connection to the database.
+In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. Create a new JAVA class **CourseAssignment** in the package **applications**.
+
+Since this is a very short program a main method with a linear structure is sufficient. The first three steps are equal to the grade report application
 
 ```java
 public static void main(String[] args) {
   // Connect to database
   OrientGraphFactory factory = new OrientGraphFactory("remote:localhost/CourseParticipation", "admin", "admin"); // The OrientDB server must be running
   OrientGraph db = factory.getTx();
-```
 
-The user provides a student's name that is read using a BufferedReader.
-
-```java
 // User input: student name
 String lastName;
 System.out.println ("Type the last name of the student: ");
@@ -46,16 +43,7 @@ try {
   e.printStackTrace();
   return;
 }
-```
 
-The next step is to query the database: retrieve all students with the provided name. We use a simple SQL-query to do this.
-
-```sql
-select * from Student where Name.LastName = ?
-```
-This is a [prepared query](http://orientdb.com/docs/last/Document-Database.html#prepared-query) where ? is substituted at execution time by the current parameter of the execute method. Thus the query can be reused with other parameter values later. The result of ``db.command(<SQL-query>).execute(<parameter>)`` is an Iterable which is used in a for-loop to print the data of all students with the provided name.
-
-```java
 // Search for all students with the provided LastName
 OSQLSynchQuery <Vertex> studQuery = new OSQLSynchQuery <Vertex> ("select * from Student where Name.LastName = ?");
 Iterable <Vertex> studs = db.command(studQuery).execute(lastName);
@@ -69,11 +57,6 @@ if (studs.iterator().hasNext()) {
   return;
 }
 
-```
-
-To select exactly one student even if more students exist with the same name, the user is asked to provide the desired student number.
-
-```java
 //User input: Student Number
 String studNr;
 System.out.println ("Type the student number: ");
@@ -83,12 +66,8 @@ try {
   e.printStackTrace();
   return;
 }
-```
 
-In a similar query as above but with the student number as parameter instead of the name the student data are retrieved and printed. Since the student number is unique for students we need not iterate the result set.
-
-```java
-// Retrieve the student and all his courses
+// Retrieve the student
 studQuery = new OSQLSynchQuery <Vertex> ("select * from Student where StudentNr = ?");
 studs = db.command(studQuery).execute(studNr);
 Vertex stud = studs.iterator().next();
