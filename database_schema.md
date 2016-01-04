@@ -1,6 +1,6 @@
 # Database Schema
 ## Learning Objectives
-In this chapter you will learn ...
+In this chapter of the tutorial you will learn ...
 * the difference of shema-full, schema-less and schema-hybrid mode of the OrientDB graph database
 * how to create a new OrientDB graph database using OrientDB Console
 * how to create a graph database schema
