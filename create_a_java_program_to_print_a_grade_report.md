@@ -1,8 +1,8 @@
 # Create a Java Program to Print a Grade Report
 
 ## Learning objectives
-In this chapter of the tutorial you will learn to ...
-* use SQL inside of a Java program to query the database
+In this chapter of the tutorial you will learn ...
+* to use SQL inside of a Java program to query the database
 * to iterate result sets
 * to retrieve the conected vertices when qurying an edge class
 
