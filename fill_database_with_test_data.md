@@ -1,5 +1,11 @@
 # Fill the Database with Test Data
 
+## Learning objectives
+In this chapter of the tutorial you will learn ...
+* to use SQL create vertex and create edge commands inOrientDB Console to create new records in the database
+* to run SQL server side scripts
+
+## Console Script File
 Again we use OrientDB Console in batch mode to create some sample data in the database. Download the file with the Console commands: [FillDB.txt](FillDB.txt).
 
 Open the file with a text editor. First old test data are deleted if you had run FillDB.txt before:
