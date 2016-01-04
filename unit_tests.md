@@ -1,7 +1,8 @@
 # Unit Tests
+##Learning Objectives
 After establishing the schema you can try to store some data in your database. The schema helps to avoid storing wrong or inconsistent data. You can test this behavior with *unit tests*. In this chapter you will also learn to access the database by a Java program.
 
-### Create a new Java Project
+## Create a new Java Project
 
 Start Eclipse on your computer. In the main menu of eclipse click on *File* > *New* > *Java Project*
 
