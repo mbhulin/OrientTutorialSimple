@@ -1,4 +1,12 @@
 # Database Schema
+## Learning Objectives
+In this chapter you will learn ...
+* the difference of shema-full, schema-less and schema-hybrid mode of the OrientDB graph database
+* how to create a new OrientDB graph database using OrientDB Console
+* how to create a graph database schema
+* how to insert some data into the database using the OrientDB Studio web application
+
+
 ##Schema-Full, Schema-Less and Schema-Hybrid Mode
 OrientDB can be used to store [graph databases](http://en.wikipedia.org/wiki/Graph_database). A graph database consists of **vertices** or **nodes** and **edges** which connect the vertices. Small graphs can easily be represented graphically using circles or squares for the vertices and lines for the edges.
 
