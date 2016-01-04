@@ -1,5 +1,5 @@
 # Additional Tasks and Quiz
-In this chapter you have learned how to create an OrientDB graph database using OrientDB Console. Now you should do some programming tasks yourself.
+In the previous chapters you have learned how to create an OrientDB graph database using OrientDB Console. Now you should do some programming tasks yourself.
 
 * Add some more unit tests to ``CourseTests.java``
 .
