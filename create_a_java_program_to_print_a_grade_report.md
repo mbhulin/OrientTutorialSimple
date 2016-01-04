@@ -1,6 +1,7 @@
 # Create a Java Program to Print a Grade Report
 
-Learning objectives: In this chapter of the tutorial you will learn to
+## Learning objectives
+In this chapter of the tutorial you will learn to ...
 * use SQL inside of a Java program to query the database
 * to iterate result sets
 * to retrieve the conected vertices when qurying an edge class
@@ -11,6 +12,7 @@ If you prefer you can watch a screencast video:
 " target="_blank"><img src="StartScreencastVideo.jpg"
 alt="Eclipse Video" width="200" height="30" border="10" /></a>
 
+## Structure of the Application
 As a simple programming task we first will develop a Java program which prints a grade report for a selected student. The program consists of the following parts:
 
 1. User input: name of a student
@@ -21,6 +23,7 @@ As a simple programming task we first will develop a Java program which prints a
 
 In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
 
+## Develop the Program
 Since this is a very short program a main method with a linear structure is sufficient. First we establish the connection to the database.
 
 ```java
