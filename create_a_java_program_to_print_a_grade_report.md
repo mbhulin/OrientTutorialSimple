@@ -13,23 +13,83 @@ As a simple programming task we first will develop a Java program which prints a
 1. Retrieve all *attends* edges of the selected student and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
 
-In [Unit Tests](unit_tests.md) you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
+In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
 
 Since this is a very short program a main method with a linear structure is sufficient. First we establish the connection to the database.
 
 ```java
-public List<Vertex> createPosList(Vertex obj) {
+public static void main(String[] args) {
+  // Connect to database
+  OrientGraphFactory factory = new OrientGraphFactory("remote:localhost/CourseParticipation", "admin", "admin"); // The OrientDB server must be running
+  OrientGraph db = factory.getTx();
 ```
 
-To retrieve possible positions of the search object we can use SQL and query the PROB_IS_AT subclass of E. There are two alternatives for each PROB_IS_AT edge:
+The user provides a student's name that is read using a BufferedReader.
 
-* Either we have a direct connection from an object to a position
-* Or we we have a connection from one object to another object, e. g. a bottle of milk is inside the refrigerator.
-
-#### Hence we first retrieve all directly connected positions of our search object. This is a simple SQL-query:
 ```java
-OSQLSynchQuery query1 = new OSQLSynchQuery ("select in as pos, Score as combiScore from PROB_IS_AT where out = ? and in.@class = 'Position'");
+// User input: student name
+String lastName;
+System.out.println ("Type the last name of the student: ");
+BufferedReader bfr = new BufferedReader (new InputStreamReader(System.in));
+try {
+  lastName = bfr.readLine();
+} catch (IOException e) {
+  e.printStackTrace();
+  return;
+}
+```
 
+The next step is to query the database: retrieve all students with the provided name. We use a simple SQL-query to do this.
+
+```sql
+select * from Student where Name.LastName = ?
+```
+This is a prepared query where ? is substituted at execution time by the current parameter of the execute method. Thus the query can be reused with other parameter values later. The result of ```db.command(<SQL-query>).execute(<parameter>)``` is an Iterable which is used in a for-loop to print the data of all students with the provided name.
+```java
+// Search for all students with the provided LastName
+OSQLSynchQuery <Vertex> studQuery = new OSQLSynchQuery <Vertex> ("select * from Student where Name.LastName = ?");
+Iterable <Vertex> studs = db.command(studQuery).execute(lastName);
+if (studs.iterator().hasNext()) {
+  for (Vertex stud : studs) {
+    Vertex name = stud.getProperty("Name");
+    System.out.println ((String) name.getProperty("FirstName") + " " + (String) name.getProperty("LastName") + ", DOB: " + stud.getProperty("DOB") + ", Stud-Nr: " + stud.getProperty("StudentNr"));
+  }
+} else { 
+  System.out.println("No student found with this name!"); 
+  return;
+}
+
+```
+
+To select exactly one student even if more students exist with the same name, the user is asked to provide the desired student number.
+
+```java
+//User input: Student Number
+String studNr;
+System.out.println ("Type the student number: ");
+try {
+  studNr = bfr.readLine();
+} catch (IOException e) {
+  e.printStackTrace();
+  return;
+}
+´´´
+
+In a similar query as above but with the student number as parameter instead of the name the student data are retrieved and printed.
+
+```java
+// Retrieve the student and all his courses
+studQuery = new OSQLSynchQuery <Vertex> ("select * from Student where StudentNr = ?");
+studs = db.command(studQuery).execute(studNr);
+Vertex stud = studs.iterator().next();
+if (stud == null) {
+  System.out.println ("No student with this student number!");
+  return;
+} else {
+  Vertex name = stud.getProperty("Name");
+  System.out.print ("Grade report for ");
+  System.out.println ((String) name.getProperty("FirstName") + " " + (String) name.getProperty("LastName") + ", DOB: " + stud.getProperty("DOB") + ", Stud-Nr: " + stud.getProperty("StudentNr"));;
+}
 ```
 Each edge connects two vertices: **out** specifies the source vertex where the edge comes out and **in** specifies the target vertex where the edge goes into. **out** must be our search object. Instead of doing some String-operations and insert the **rid** (record id) of the object into the where condition we use a [prepared query](http://orientdb.com/docs/last/Document-Database.html#prepared-query). The '?' in ``where out = ?`` is a parameter that is passed at execution time.
 
