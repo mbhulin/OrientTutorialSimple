@@ -25,7 +25,7 @@ This application assigns a student to a course. It checks whether the student ha
 ## Develop the Program
 In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. Create a new JAVA class **CourseAssignment** in the package **applications**.
 
-Since this is a very short program a main method with a linear structure is sufficient. The first three steps are equal to the grade report application
+Since this is a very short program a main method with a linear structure is sufficient. The first three steps are equal to the grade report application. Hence the code can be copied from that application.
 
 ```java
 public static void main(String[] args) {
@@ -74,12 +74,10 @@ Vertex stud = studs.iterator().next();
 if (stud == null) {
   System.out.println ("No student with this student number!");
   return;
-} else {
-  Vertex name = stud.getProperty("Name");
-  System.out.print ("Grade report for ");
-  System.out.println ((String) name.getProperty("FirstName") + " " + (String) name.getProperty("LastName") + ", DOB: " + stud.getProperty("DOB") + ", Stud-Nr: " + stud.getProperty("StudentNr"));;
 }
 ```
+
+In the next step the user has to select a course. A list of all courses is printed and the user is asked to for the course number. This course is retrieved from the database.
 
 The last part of the program is the grade report. The student's grades are stored in the *attends* edges. Therefore we retrieve all attends edges that start at the selected student.  
 Each edge connects two vertices: **out** specifies the source vertex where the edge comes out and **in** specifies the target vertex where the edge goes into. **out** must be our selected student. Instead of doing some String-operations and insert the **rid** (record id) of the student into the where condition we again use a prepared query and get the condition ``where out = ?``.
