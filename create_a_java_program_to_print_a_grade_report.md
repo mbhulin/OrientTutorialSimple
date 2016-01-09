@@ -129,10 +129,36 @@ for (Vertex item : result) {
 After retrieving and printing the information about all courses the selected student has attended so far we want to assign a new course to the student. The user has to select a course. A list of all courses is printed and the user is asked for the course number. This course is retrieved from the database.
 
 ```java
-OSQLSynchQuery <Vertex> courseQuery = new OSQLSynchQuery <Vertex> ("select in, Semester, Attempt, Grade from attends where out = ? order by Semester");
-Iterable <Vertex> result = db.command(courseQuery).execute(stud.getId());
-for (Vertex item : result) {
-  Vertex course = item.getProperty("in");
-  System.out.println (course.getProperty("CourseNr") + " " + course.getProperty("Subject") + " " + item.getProperty("Semester") + " " + item.getProperty("Attempt") + " " + item.getProperty("Grade"));
+// Search for all courses with the provided courseName
+OSQLSynchQuery <Vertex> courseQuery = new OSQLSynchQuery <Vertex> ("select * from Course where Subject LIKE ?");
+Iterable <Vertex> courses = db.command(courseQuery).execute("%" + courseName + "%");
+if (courses.iterator().hasNext()) {
+  for (Vertex course : courses) {
+    System.out.println ((String) course.getProperty("Subject") +  " " + course.getProperty("CourseNr"));;
+  }
+} else { 
+  System.out.println("No course found with this name!"); 
+  return;
+}
+
+//User input: Course Number
+String courseNr;
+System.out.println ("Type the course number: ");
+try {
+  courseNr = bfr.readLine();
+} catch (IOException e) {
+  e.printStackTrace();
+  return;
+}
+
+// Select course with the provided courseNr
+Vertex chosenCourse;
+OSQLSynchQuery <Vertex> courseQueryNr = new OSQLSynchQuery <Vertex> ("select * from Course where CourseNr = ?");
+Iterable <Vertex> coursesNr = db.command(courseQueryNr).execute(courseNr);
+if (coursesNr.iterator().hasNext()) {
+  chosenCourse = coursesNr.iterator().next();
+} else { 
+  System.out.println("No course found with this course number!"); 
+  return;
 }
 ```
