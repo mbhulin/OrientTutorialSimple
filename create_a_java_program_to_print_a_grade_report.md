@@ -26,7 +26,7 @@ As a simple programming task we first will develop a Java program which prints a
 3. Print all course names and numbers
 2. User input: course number
 3. Select desired course and retrieve all courses which are required for this course following the *required* edges
-1. For each of the required courses retrieve all *attends* edges and check whether one of them is connected to the selected student and the grade is better than F
+1. Check whether the studend has successfully attended all required courses: Retrieve all *attends* edges of the selected student. Delete these courses from the list of required courses.
 2. If the check succeeds create a new attends edge from the selected student to the selected course
 
 ## Develop the Program to Print a Grade Report
@@ -185,4 +185,62 @@ Iterable <Vertex> requiredCourses = db.command(dependentCourseQuery).execute();
 ArrayList <String> requiredCoursesList = new ArrayList <String> (); // transform Iterable into List
 for (Vertex course : requiredCourses) requiredCoursesList.add(course.getId().toString());
 ```
+
+The list of required courses must be compared to the list of courses the selected student has already attended. These already attended courses could be retrieved using SQL. But this time the tutorial shows another possibility: navigational access using the Tinkerpop Blueprints API. ``stud.getEdges(Direction.OUT, "attends")`` retrieves all *attends* edges that start at the selected *Student* vertex ``stud``. If ``a`` is one of these *attends* edges ``a.getVertex(Direction.IN)`` retrieves the corresponding *Course* vertex.
+
+Each of the retrieved courses is deleted from the list of required courses. Of course this is done only for courses where the student has achieved a success grade ("A", "B" or "C"). Also the new course is deleted from this list.
+
+```java
+requiredCoursesList.remove(chosenCourse.getId().toString());
+for (Edge a : stud.getEdges(Direction.OUT, "attends")) {
+  String grade = a.getProperty("Grade");
+  if (grade != null)
+    if (grade.equals("A") || grade.equals("B") || grade.equals("C")) requiredCoursesList.remove(a.getVertex(Direction.IN).getId().toString());
+}
+```
+
+If the list of required courses is empty afterwards the check succeeded and the selected student can be assigned to the new course by ``Edge a = db.addEdge(null, stud, chosenCourse, "attends");``. The user is asked to provide information about the grade, the semester and the attempt and the properties are set accordingly, e.g. ``a.setProperty("Grade", grade);``. Finally the transaction is committed.
+
+```java
+// Assign student stud to course
+if (requiredCoursesList.isEmpty()) {
+  //User input: Course Number
+  String grade;
+  String attempt;
+  String semester;
+  try {
+    System.out.println ("Type the grade: ");
+    grade = bfr.readLine();
+    System.out.println("Type the attempt: ");
+    attempt = bfr.readLine();
+    System.out.println ("Type the semester: ");
+    semester = bfr.readLine();
+  } catch (IOException e) {
+    e.printStackTrace();
+    return;
+  }
+  
+  Edge a = db.addEdge(null, stud, chosenCourse, "attends");
+  a.setProperty("Grade", grade);
+  a.setProperty("Attempt", Integer.valueOf(attempt).intValue());
+  a.setProperty("Semester", Integer.valueOf(semester).intValue());
+  System.out.println("Check o.k., student assigned to course.");
+  db.commit();
+} else {
+  System.out.println ("Check failed, student not assigned to course. Missing courses for student: ");
+  for (String cid : requiredCoursesList ) {
+    System.out.println ((String) db.getVertex(cid).getProperty("Subject"));
+  }
+}
+```
+
+At last the connection to the database is closed.
+
+```java
+    db.shutdown();
+    factory.close();
+  }
+}
+```
+
 
