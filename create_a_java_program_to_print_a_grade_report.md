@@ -165,4 +165,24 @@ if (coursesNr.iterator().hasNext()) {
 
 We cannot just create a new *attends* edge between the selected *student* and the selected *course*. First we have to check whether the student has already successfully attended all required courses. Required courses are not only directly connected to the selected course via a *required* edge but can also be connected recursively by a chain of other *courses* and *required* edges. OrientDB allows to retrieve a graph recursively using the **traverse** command as a SQL extension.
 
-![Requires Chain] (RequiresChain.jpg)
+![Requires Chain](RequiresChain.jpg)
+
+This is the appropriate *traverse* command here:
+
+```sql
+traverse outE('requires'), requires.in from <Course Id>
+```
+
+The *from* part defines the starting point, a vertex, an edge or a list of vertices or edges, where the traversal begins. Behind the *traverse* keyword the connected objects are listed which are used to follow a path in the graph. Let's look at the example above: The traversal begins at a certain course id, let' assume at #13:25 representing "Artificial Intelligence". ``outE("requires")`` selects all *requires* edges starting at #13:25, in this case only one edge #15:5. With ``requires.in`` all vertices are selected where the *required* edges of the last step end. In our case it is the course "Software Engineering" with the Id #13:22. Now the traversal recursively continues with this course Id and retrieves the *requires* edge #15:3 and the course vertex #13:20 which is "Programming". (The mentioned IDs are only examples and may vary if you implement and run the application.)
+
+Since we need only the *courses*, not the *requires* edges, we surround the *traverse* command with a select that extracts only *courses*. As you already know the result is an *Iterable*. This is transformed into an *ArrayList*.
+
+```java
+// Find all courses which are required for the selected course
+OSQLSynchQuery dependentCourseQuery = new OSQLSynchQuery <Vertex> ("select * from (traverse outE('requires'), requires.in from " + chosenCourse.getId() + ") where @class = 'Course'");
+Iterable <Vertex> requiredCourses = db.command(dependentCourseQuery).execute();
+
+ArrayList <String> requiredCoursesList = new ArrayList <String> (); // transform Iterable into List
+for (Vertex course : requiredCourses) requiredCoursesList.add(course.getId().toString());
+```
+
