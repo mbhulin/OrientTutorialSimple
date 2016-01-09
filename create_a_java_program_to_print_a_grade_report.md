@@ -1,4 +1,4 @@
-# Create a Java Program to Print a Grade Report
+# Create a Java Program to Print a Grade Report and Assign a new Course to a Student
 
 ## Learning objectives
 In this chapter of the tutorial you will learn ...
