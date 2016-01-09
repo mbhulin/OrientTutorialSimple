@@ -162,3 +162,5 @@ if (coursesNr.iterator().hasNext()) {
   return;
 }
 ```
+
+We cannot just create a new *attends* edge between the selected *student* and the selected *course*. First we have to check whether the student has already successfully attended all required courses. Required courses are not only directly connected to the selected course via a *required* edge but can also be connected recursively by a chain of other *courses* and *required* edges. OrientDB allows to retrieve a graph recursively using the **traverse** command as a SQL extension.
