@@ -1,5 +1,51 @@
 set echo on;
-create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Max', 'LastName':'Maker'},  StudentNr = 5000, Gender = 'male';
-create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Susan', 'LastName':'Gartner'},  StudentNr = 5001, Gender = 'female';
+connect plocal:../databases/CourseParticipation admin admin; 
+delete edge E;
+delete vertex V;
 
-create vertex Course set Subject = 'Mathematics,  CourseNr = 50000, CreditPoints = 5, LearningObjectives = ['can multiply matrices', 'can integrate trigonometric functions', 'knows the definition of vector space'];
+script sql;
+begin;
+let s1 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Max', 'LastName':'Maker'},  StudentNr = 5000, Gender = 'male';
+let s2 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Susan', 'LastName':'Gartner'},  StudentNr = 5001, Gender = 'female';
+let s3 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Caroline', 'LastName':'Gartner'},  StudentNr = 5002, Gender = 'female';
+let s4 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Gregory', 'LastName':'Maker'},  StudentNr = 5003, Gender = 'male';
+let s5 = create vertex Student set Name = {'@type':'d', '@class':'Name', 'FirstName':'Susan', 'LastName':'Miller'},  StudentNr = 5004, Gender = 'female';
+commit;
+
+begin;
+let c1 = create vertex Course set Subject = 'Mathematics',  CourseNr = 50000, CreditPoints = 5, LearningObjectives = ['can multiply matrices', 'can integrate trigonometric functions', 'knows the definition of vector space'];
+let c2 = create vertex Course set Subject = 'Programming',  CourseNr = 50001, CreditPoints = 5, LearningObjectives = ['can develop a Java program', 'can debug a Java program', 'knows about unit tests'];
+let c3 = create vertex Course set Subject = 'Computer Technology',  CourseNr = 50002, CreditPoints = 5, LearningObjectives = ['knows the history of computing', 'knows the architecture of a von Neumann computer'];
+let c4 = create vertex Course set Subject = 'Software Engineering',  CourseNr = 50003, CreditPoints = 5, LearningObjectives = ['knows different development strategies', 'can manage a project', 'can work in a team'];
+let c5 = create vertex Course set Subject = 'Databases',  CourseNr = 50004, CreditPoints = 5, LearningObjectives = ['can create a database schema', 'can query a database with SQL', 'knows different normal forms', 'is an expert for OrientDB'];
+let c6 = create vertex Course set Subject = 'Operating Systems',  CourseNr = 50005, CreditPoints = 5, LearningObjectives = ['knows Windows', 'knows Linux'];
+let c7 = create vertex Course set Subject = 'Artificial Intelligence',  CourseNr = 50006, CreditPoints = 5, LearningObjectives = ['Data Mining', 'Expert Systems'];
+commit;
+
+begin;
+let a1 = create edge attends from $s1 to $c1 set Semester = 20130, Attempt = 1, Grade = 'B';
+let a2 = create edge attends from $s1 to $c2 set Semester = 20135, Attempt = 1, Grade = 'B';
+let a3 = create edge attends from $s1 to $c3 set Semester = 20135, Attempt = 1, Grade = 'B';
+let a4 = create edge attends from $s2 to $c1 set Semester = 20130, Attempt = 1, Grade = 'F';
+let a5 = create edge attends from $s2 to $c1 set Semester = 20135, Attempt = 2, Grade = 'B';
+let a6 = create edge attends from $s2 to $c2 set Semester = 20135, Attempt = 1, Grade = 'C';
+let a7 = create edge attends from $s3 to $c1 set Semester = 20130, Attempt = 1, Grade = 'B';
+let a8 = create edge attends from $s3 to $c2 set Semester = 20130, Attempt = 1, Grade = 'A';
+let a9 = create edge attends from $s3 to $c3 set Semester = 20135, Attempt = 1, Grade = 'B';
+let a10 = create edge attends from $s4 to $c1 set Semester = 20130, Attempt = 1, Grade = 'B';
+let a11 = create edge attends from $s4 to $c2 set Semester = 20130, Attempt = 1, Grade = 'A';
+let a12 = create edge attends from $s4 to $c3 set Semester = 20130, Attempt = 1, Grade = 'B';
+let a13 = create edge attends from $s4 to $c4 set Semester = 20135, Attempt = 1, Grade = 'C';
+let a14 = create edge attends from $s4 to $c5 set Semester = 20140, Attempt = 1, Grade = 'A';
+let a15 = create edge attends from $s4 to $c6 set Semester = 20145, Attempt = 1;
+commit;
+
+begin;
+let r1 = create edge requires from $c4 to $c2;
+let r2 = create edge requires from $c5 to $c2;
+let r3 = create edge requires from $c7 to $c4;
+let r4 = create edge requires from $c7 to $c1;
+commit;
+end;
+
+
