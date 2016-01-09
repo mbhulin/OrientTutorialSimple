@@ -22,10 +22,15 @@ As a simple programming task we first will develop a Java program which prints a
 1. User input: student number of the student
 1. Retrieve all *attends* edges of the selected student and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
+2. User input: course number
+3. Select desired course and retrieve all courses which are required for this course following the *required* edges
+1. For each of the required courses retrieve all *attends* edges and check whether one of them is connected to the selected student and the grade is better than F
+2. If the check succeeds create a new attends edge from the selected student to the selected course
+
+## Develop the Program to Print a Grade Report
 
 In the section [Unit Tests](unit_tests.md) of this tutorial you created a Java project in Eclipse. Open this project. To implement the grade report create a new package in Eclipse: **applications**. Then create a new JAVA class **GradeReport** in this package.
 
-## Develop the Program
 Since this is a very short program a main method with a linear structure is sufficient. First we establish the connection to the database.
 
 ```java
@@ -118,5 +123,5 @@ for (Vertex item : result) {
 }
 ```
 
-
+##Extend the Program to Assign a New Course to the Selected Student
 
