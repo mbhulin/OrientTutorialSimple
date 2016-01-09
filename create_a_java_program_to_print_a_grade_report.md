@@ -7,6 +7,7 @@ In this chapter of the tutorial you will learn ...
 * to retrieve the conected vertices when qurying an edge class
 * to navigate from one vertex to a connected vertex
 * to use the SQL extension **traverse** to traverse a graph recursively
+* to create a new edge using tinkerpop blueprints API
 
 
 If you prefer you can watch a screencast video:
@@ -22,6 +23,7 @@ As a simple programming task we first will develop a Java program which prints a
 1. User input: student number of the student
 1. Retrieve all *attends* edges of the selected student and the connected course vertices
 2. Print the grades of each attends edge together with the subject of the corresponding course
+3. Print all course names and numbers
 2. User input: course number
 3. Select desired course and retrieve all courses which are required for this course following the *required* edges
 1. For each of the required courses retrieve all *attends* edges and check whether one of them is connected to the selected student and the grade is better than F
@@ -109,7 +111,7 @@ if (stud == null) {
 }
 ```
 
-The last part of the program is the grade report. The student's grades are stored in the *attends* edges. Therefore we retrieve all attends edges that start at the selected student.  
+The next part of the program is the grade report. The student's grades are stored in the *attends* edges. Therefore we retrieve all attends edges that start at the selected student.  
 Each edge connects two vertices: **out** specifies the source vertex where the edge comes out and **in** specifies the target vertex where the edge goes into. **out** must be our selected student. Instead of doing some String-operations and insert the **rid** (record id) of the student into the where condition we again use a prepared query and get the condition ``where out = ?``.
 
 Instead of a **join** operation to connect the attends edges with the corresponding course which is necessary in relational databases we can retrieve the course easily by the **in** property of the *attends* edge.
@@ -124,4 +126,13 @@ for (Vertex item : result) {
 ```
 
 ##Extend the Program to Assign a New Course to the Selected Student
+After retrieving and printing the information about all courses the selected student has attended so far we want to assign a new course to the student. The user has to select a course. A list of all courses is printed and the user is asked for the course number. This course is retrieved from the database.
 
+```java
+OSQLSynchQuery <Vertex> courseQuery = new OSQLSynchQuery <Vertex> ("select in, Semester, Attempt, Grade from attends where out = ? order by Semester");
+Iterable <Vertex> result = db.command(courseQuery).execute(stud.getId());
+for (Vertex item : result) {
+  Vertex course = item.getProperty("in");
+  System.out.println (course.getProperty("CourseNr") + " " + course.getProperty("Subject") + " " + item.getProperty("Semester") + " " + item.getProperty("Attempt") + " " + item.getProperty("Grade"));
+}
+```
