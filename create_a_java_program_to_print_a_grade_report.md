@@ -13,7 +13,7 @@ In this chapter of the tutorial you will learn ...
 If you prefer you can watch a screencast video:
 <a href="RWM-Search-2.mp4
 " target="_blank"><img src="StartScreencastVideo.jpg"
-alt="Eclipse Video" width="200" height="30" border="10" /></a>
+alt="Screencast Video" width="200" height="30" border="10" /></a>
 
 ## Structure of the Application
 As a simple programming task we first will develop a Java program which prints a grade report for a selected student. The program consists of the following parts:
