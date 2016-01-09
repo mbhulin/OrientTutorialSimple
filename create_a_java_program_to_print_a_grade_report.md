@@ -5,6 +5,7 @@ In this chapter of the tutorial you will learn ...
 * to use SQL inside of a Java program to query the database
 * to iterate result sets
 * to retrieve the conected vertices when qurying an edge class
+* to use the SQL extension **traverse** to traverse a graph recursively
 
 
 If you prefer you can watch a screencast video:
