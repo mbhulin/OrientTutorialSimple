@@ -2,7 +2,7 @@
 
 ## Learning objectives
 In this chapter of the tutorial you will learn ...
-* to use SQL create vertex and create edge commands inOrientDB Console to create new records in the database
+* to use SQL create vertex and create edge commands in OrientDB Console to create new records in the database
 * to run SQL server side scripts
 
 ## Console Script File
@@ -34,7 +34,8 @@ To create the edges we must remember the previously created verteces. This is po
 
 Edit FillDB.txt and add some additional *Student* and *Course* vertices and some *attend* and *requires* edges.
 
-Finally run FillDB.
+Finally run FillDB with Console in batch mode in a command window:<br>
+``Console.bat FillDB.txt``
 
 ### Create Vertices and Edges Using a Java Program
 
