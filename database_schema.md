@@ -98,14 +98,14 @@ alter property Student.Gender regexp [male|female];
 create property Student.StudentNr integer;
 alter property Student.StudentNr mandatory true;
 alter property Student.StudentNr min 1000;
-create sequence matrSeq starts with 1000;
+create sequence StudNrSeq starts with 1000;
 ```
 
 * The student's name is embedded and must not be empty.
 * For gender only the values "male" and "female" are allowed. This is guaranteed by a regular expression constraint.
-* The matriculaton number is a mandatory fileld for Student. The numbers must have at least four digits.
-* Of course matriculation numbers must be unique. This is guaranteed by a **unique index**.  Indexes also speed up search operations. Find more information about [indexes in the OrientDB documentation](orientdocu).
-* Unique matriculation numbers can easily be created using **sequences**. matrSeq.next() creates a new number. Find more information about [sequences in the OrientDB documentation](orientdoku)
+* The student number is a mandatory field for Student. The numbers must have at least four digits.
+* Of course student numbers must be unique. This is guaranteed by a **unique index**.  Indexes also speed up search operations. Find more information about [indexes in the OrientDB documentation](orientdocu).
+* Unique student numbers can easily be created using **sequences**. StudNrSeq.next() creates a new number. Find more information about [sequences in the OrientDB documentation](orientdoku)
 
 In the same way create the properties for the Course class:
 ```
@@ -143,7 +143,7 @@ To insert data into the database there are again three possibilities:
 * Use the **Java API** to create a vertex using the Java API.
 
 ### Create Vertices and Edges with Studio
-Open a command promt  (command shell) window on the computer where you want to start the OrientDB server.
+Open a command prompt  (command shell) window on the computer where you want to start the OrientDB server.
 
 Change to the bin directory of your OrientDB installation, e.g. ```cd /orientdb/bin```
 ![command prompt](cmdPromt.JPG)
