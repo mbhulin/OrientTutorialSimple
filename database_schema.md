@@ -136,6 +136,8 @@ Save your command file and execute it:
 ```console.bat <path-to-command-file>/CreateDB.txt``` on Windows or  
 ```console.sh <path-to-command-file>/CreateDB.txt``` on Linux
 
+If you like, you can download the complete file with the Console commands to create the database schema: [CreateDB.txt](CreateDB.txt).
+
 ## Insert some Sample Data into the Database
 To insert data into the database there are again three possibilities:
 * Use **Studio** to create a new vertex interactively or with SQL
