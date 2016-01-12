@@ -24,32 +24,32 @@
     
     </question>
     <question>
-    <p>Which is the correct syntax if you want to find all mobile objects which may be at the position with @rid #20:15 and a score of 5?</p>
-    <answer><code>db.executeSQL(new OSQLSynchQuery (<br><tab indent=20>"select * from MobileObject where out = #20:15 and PROB_IS_AT.Score = 5"<br>));</code>
+    <p>Which is the correct syntax if you want to find all Students which have attended the course with @rid #20:15 and have achieved an A-grade?</p>
+    <answer><code>db.executeSQL(new OSQLSynchQuery (<br><tab indent=20>"select * from Student where out = #20:15 and attends.Grade = 'A'"<br>));</code>
     </answer>
     <answer correct>
         <code>db.command(new OSQLSynchQuery (<br><tab indent=20>
-            "select out from PROB_IS_AT where in.@rid = #20:15 and Score = 5 and out.@class = 'MobileObject'"
+            "select out from attends where in.@rid = #20:15 and Grade = 'A' and out.@class = 'Student'"
         <br>)).execute();
         </code>
     </answer>
     <answer>
-        <code>db.command(new OSQLSynchQuery (<br><tab indent=20>"select * from MobileObject where out = #20:15 and Score = 5"<br>)).execute();</code>
+        <code>db.command(new OSQLSynchQuery (<br><tab indent=20>"select * from Student where out = #20:15 and Grade = 'A'"<br>)).execute();</code>
     </answer>
-    <answer><code>db.command(<br>"select out('MobileObject) from PROB_IS_AT where in.@rid = #20:15 and Score = 5"<br>).execute();</code>
+    <answer><code>db.command(<br>"select out('Student') from attends where in.@rid = #20:15 and Grade = 'A'"<br>).execute();</code>
     </answer>
-    <explanation><code>db.command(&LT;OSQLSynchQuery&GT;).execute()</code> is the correct syntax. <br><code>select out from PROB_IS_AT where in.@rid = #20:15 and Score = 5 and out.@class = 'MobileObject'</code> is the correct SQL query: Start at an edge because an edge has only one start vertex (out) and one destination vertex (in). So search for all PROB_IS_AT edges with destination #20:15 and a Score of 5 or more which start at a MobileObject vertex; then return these MobileObject vertices.</explanation>
+    <explanation><code>db.command(&LT;OSQLSynchQuery&GT;).execute()</code> is the correct syntax. <br><code>select out from attends where in.@rid = #20:15 and Grade = 'A' and out.@class = 'Student'</code> is the correct SQL query: Start at an edge because an edge has only one start vertex (out) and one destination vertex (in). So search for all attend edges with destination #20:15 and a Grade of 'A' which start at a Student vertex; then return these Student vertices.</explanation>
     </question>
     
     <question>
     <p>Which is the result of <code>db.command(<OSQLSynchQuery>).execute()?</code></p>
     <answer>A table of records</answer>
     <answer>Always <code>Iterable &LT;Vertex&GT;</code></answer>
-    <answer>It depends. <ul><li>If you query a vertex class e.g. <code>select * from MobileObject</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code>.</li> <li>If you query an edge class e.g. <code>select * from PROB_IS_AT</code> <br>you get a result of type <code>Iterable &LT;Edge&GT;</code>.</li> <li>If you query a function with integer results e.g. <code>select count(*) from MobileObject</code> <br>you get a result of type <code>Iterable &LT;Integer&GT;</code></li> </ul>
+    <answer>It depends. <ul><li>If you query a vertex class e.g. <code>select * from Student</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code>.</li> <li>If you query an edge class e.g. <code>select * from attends</code> <br>you get a result of type <code>Iterable &LT;Edge&GT;</code>.</li> <li>If you query a function with integer results e.g. <code>select count(*) from Student</code> <br>you get a result of type <code>Iterable &LT;Integer&GT;</code></li> </ul>
     </answer>
-    <answer correct>It depends. <ul><li>If you query a vertex class e.g. <code>select * from MobileObject</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code>.</li> <li>If you query an edge class e.g. <code>select * from PROB_IS_AT</code> <br>you get a result of type <code>Iterable &LT;Edge&GT;</code>.</li> <li>If you query anything else e.g. <code>select Score from PROB_IS_AT</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code></li> </ul>
+    <answer correct>It depends. <ul><li>If you query a vertex class e.g. <code>select * from Student</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code>.</li> <li>If you query an edge class e.g. <code>select * from attends</code> <br>you get a result of type <code>Iterable &LT;Edge&GT;</code>.</li> <li>If you query anything else e.g. <code>select Grade from attends</code> <br>you get a result of type <code>Iterable &LT;Vertex&GT;</code></li> </ul>
     </answer>
-    <explanation>Only if you explicitly query edges you get a result of type <code>Iterable &LT;Edge&GT;</code>. In most cases you get a result of type <code>Iterable &LT;Vertex&GT;</code>: If you select a subclass of V you get persistend vertices, if you select anything else you get temporary vertices. </explanation>
+    <explanation>Only if you explicitly query edges you get a result of type <code>Iterable &LT;Edge&GT;</code>. In most cases you get a result of type <code>Iterable &LT;Vertex&GT;</code>: If you select a subclass of V you get persistent vertices, if you select anything else you get temporary vertices. </explanation>
     </question>
     
     <question multiple>
@@ -63,6 +63,6 @@
     </answer>
     <answer correct><code>Iterable <Edge> edges = <br>db.command(new OSQLSynchQuery("select from MyEdge where out = ?")).execute(myVertex);</code>
     </answer>
-    <explanation><code>db.getEdges(myVertex, Direction.OUT, "MyEdge");</code> is wrong. <code>db.getEdges()</code> is only suitable if you want to retrieve all edges of an edge class.<br>Attention: If you use SQL and refer to a vertex class in the FROM part you have to use <code>outE()<c/ode> or <code>inE()</code> with parantheses to get the connected edges. If you refer to an edge class in the FROM part you have to use <code>in</code> or <code>out</code> without parantheses to get the connected vertices. </explanation>
+    <explanation><code>db.getEdges(myVertex, Direction.OUT, "MyEdge");</code> is wrong. <code>db.getEdges()</code> is only suitable if you want to retrieve all edges of an edge class.<br>Attention: If you use SQL and refer to a vertex class in the FROM part you have to use <code>outE()<c/ode> or <code>inE()</code> with parentheses to get the connected edges. If you refer to an edge class in the FROM part you have to use <code>in</code> or <code>out</code> without parentheses to get the connected vertices. </explanation>
     </question>
 </quiz>
