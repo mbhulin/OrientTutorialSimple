@@ -67,13 +67,14 @@ create class Student extends V;
 create class Course extends V;
 create class attends extends E;
 create class requires extends E;
-create class Name;
 ```
 
 CourseParticipation was created as graph database. OrientDB creates two default classes for a graph database: **V** for vertices and **E** for edges. Objects like students or courses are usually stored as vertices. Hence *Student* and *Course* are created as subclasses of *V*. Relationships are usually stored as edges. Hence the relations *attends* and *requires* are created as subclasses of *E*.
 
 Students have a name. This name is not a single value but structured. It consists of a first name, a last name, perhaps a title etc. Instead of creating separate fields for all these attributes as we would have to do in a relational table, in OrientDB we can connect these fields more tightly in an extra class. Since Names are not standalone objects but belong to students the Name objects will not be stored as vertices in the graph. They will be embedded in the Student objects. Hence the Name class is created as a pure document class.
-
+```sql
+create class Name;
+```
 In schema-less mode we could begin to store objects in the classes. However we want to work with a schema. Hence we create the properties of the classes:
 ```
 create property Name.FirstName string;
