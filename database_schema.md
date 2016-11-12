@@ -56,7 +56,7 @@ Which are the commands you enter in the command file *CreateDB.txt*?
 First switch on Echo mode. This will show you the executed commands during the batch run:  
 ```set echo true;```
 
-Then create the new database locally on your computer:  
+Then create the new database locally (plocal) on your computer. The key-word ```plocal``` is followed by the path to the database directory of your OrientDB installation and the name of the database:  
 ```create database plocal:/orientdb/databases/CourseParticipation;```
 
 ## Create the Classes of the Database Schema
