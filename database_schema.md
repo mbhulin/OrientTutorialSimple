@@ -56,7 +56,7 @@ Which are the commands you enter in the command file *CreateDB.txt*?
 First switch on Echo mode. This will show you the executed commands during the batch run:  
 ```set echo true;```
 
-Then create the new database:  
+Then create the new database locally on your computer:  
 ```create database plocal:/orientdb/databases/CourseParticipation;```
 
 ## Create the Classes of the Database Schema
@@ -135,7 +135,9 @@ create property attends.Grade string;
 
 Save your command file and execute it:  
 ```console.bat <path-to-command-file>/CreateDB.txt``` on Windows or  
-```console.sh <path-to-command-file>/CreateDB.txt``` on Linux
+```console.sh <path-to-command-file>/CreateDB.txt``` on Linux.
+
+Be sure that the OrientDB server is not running when you execute the console script since you create the new database locally on your computer. 
 
 If you like, you can download the complete file with the Console commands to create the database schema: [CreateDB.txt](CreateDB.txt).
 
