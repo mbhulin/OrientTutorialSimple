@@ -26,7 +26,7 @@ In this tutorial we will use the schema-full mode to avoid errors especially whe
 
 ## Create a new Database using the OrientDB Console
 OrientDB offers several possibilities to create new databases:
-* Use **Studio** to [create a new database interactively](http://orientdb.com/docs/last/Home-page.html#create-a-new-database)
+* Use **Studio** to [create a new database interactively](http://orientdb.com/docs/last/Studio-Home-page.html#create-a-new-database)
 * Use **Console** and the [create database command](http://orientdb.com/docs/last/Console-Command-Create-Database.html)
 * Use the **Java API** to create a database with a Java program.
 
