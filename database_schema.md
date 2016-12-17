@@ -42,7 +42,7 @@ You can start the OrientDB Console application and then enter one console comman
 
 * Create an empty text file *CreateDB.txt* and open it with your favorite editor.
 * Enter OrientDB commands line by line (see below). Close each command by a semicolon ";".
-* Save *CreateDB.txt*
+* Save *CreateDB.txt*. We recommend to type the commands of CreateDB.txt line by line to get familiar with the command syntax. However, if you like, you can download the complete file with the Console commands: [CreateDB.txt](CreateDB.txt).
 * Open a command window or shell
 * Go to the bin directory of your OrientDB installation, e.g. ```cd /orientdb/bin```
 * Start OrientDB Console with the command file:  
