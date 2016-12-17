@@ -57,7 +57,9 @@ First switch on Echo mode. This will show you the executed commands during the b
 ```set echo true;```
 
 Then create the new database locally (plocal) on your computer. The key-word ```plocal``` is followed by the path to the database directory of your OrientDB installation and the name of the database:  
-```create database plocal:/orientdb/databases/CourseParticipation;```
+```create database plocal:../databases/CourseParticipation;```
+
+The relative path ```../databases``` works, if you execute the command file in the bin-subdirectory of your OrientDB installation. Otherwise use an absolute path like `plocal:D:/orient-community-2.2.10/databases/CourseParticipation`.
 
 ## Create the Classes of the Database Schema
 
