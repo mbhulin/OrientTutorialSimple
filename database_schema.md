@@ -97,7 +97,7 @@ alter property Student.Name mandatory true;
 alter property Student.Name notnull true;
 create property Student.DOB date;  // Date of birth
 create property Student.Gender string;
-alter property Student.Gender regexp [male|female];
+alter property Student.Gender regexp 'male|female';
 create property Student.StudentNr integer;
 alter property Student.StudentNr mandatory true;
 alter property Student.StudentNr min 1000;
